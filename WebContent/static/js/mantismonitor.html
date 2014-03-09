@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<!-- saved from url=(0036)http://localhost:8080/mantismonitor/ -->
+<html lang="pt"><head><meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+	
+		<link href="./mantismonitor_files/jquery-ui.css" rel="stylesheet" type="text/css">
+		<link href="./mantismonitor_files/bootstrap.min.css" rel="stylesheet" type="text/css">
+		<link href="./mantismonitor_files/bootstrap-theme.min.css" rel="stylesheet" type="text/css">
+		<link href="./mantismonitor_files/jquery.tagit.css" rel="stylesheet" type="text/css">
+	</head>
+	<body>
+		<div class="container-fluid">
+		
+		<div id="msgError"></div>
+		<div id="msgSuccess"></div>
+		
+		
+	
+		<!-- MANTIS GROUP ADD (BEGIN) -->
+		<div class="row">
+			<div class="col-md-6">		
+				<form name="frmMantisGroup" id="frmMantisGroup" role="form" class="form-inline">
+					<label class="sr-only" for="mantisGroup_name">Group Name</label>
+					<input type="text" name="mantisGroup.name" id="mantisGroup_name" size="80" placeholder="Group Name" class="form-control">
+					<button type="submit" id="btAddMantisGroup" class="btn btn-primary"><span class="glyphicon glyphicon-plus"></span></button>
+				</form>
+			</div>
+		
+		<!-- MANTIS GROUP ADD (END) -->
+		
+		<!-- MANTIS GROUP REFRESH (BEGIN) -->
+
+			<div class="col-md-6">		
+				<button type="button" id="btnRefreshAll" class="btn btn-default pull-right"><span class="glyphicon glyphicon-refresh"></span></button>
+			</div>
+		<!-- MANTIS GROUP REFRESH (END) -->
+		</div>
+	
+		<!-- MANTIS GROUP LIST (BEGIN) -->
+		
+		<div class="row" id="mantisGroupList">
+		<div class="col-md-12">
+		
+			<div class="mantisGroup row" id="mantisGroup_1" data-mantis-group-id="1">
+				<div class="col-md-12">
+				<div class="row">
+					<div class="col-md-11"><h4>teste</h4></div>
+					<div class="col-md-1"><a href="http://localhost:8080/mantismonitor/1" class="delete btn btn-danger pull-right"><span class="glyphicon glyphicon-minus"></span></a></div>
+				</div>
+				<div class="row">
+					<div class="col-md-12">
+					<ul id="mantisGroupList_1_mantis_ids" class="mantisTags tagit ui-widget ui-widget-content ui-corner-all">
+						<!-- TAG MANTIS IDS (BEGIN) -->
+						
+							
+						
+							
+						
+					<li class="tagit-choice ui-widget-content ui-state-default ui-corner-all tagit-choice-editable"><span class="tagit-label">123</span><a class="tagit-close"><span class="text-icon">×</span><span class="ui-icon ui-icon-close"></span></a><input type="hidden" value="123" name="tags" class="tagit-hidden-field"></li><li class="tagit-choice ui-widget-content ui-state-default ui-corner-all tagit-choice-editable"><span class="tagit-label">4566</span><a class="tagit-close"><span class="text-icon">×</span><span class="ui-icon ui-icon-close"></span></a><input type="hidden" value="4566" name="tags" class="tagit-hidden-field"></li><li class="tagit-new"><input type="text" class="ui-widget-content ui-autocomplete-input" autocomplete="off" role="textbox" aria-autocomplete="list" aria-haspopup="true"></li></ul>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-12">
+					<table id="mantisGroupList_1_mantisList" class="mantisList table table-striped table-bordered">
+						<thead>
+							<tr>
+								<th>ID</th>
+								<th>Name</th>
+								<th>Status</th>
+								<th>Reporter</th>
+								<th>Responsable</th>
+							</tr>
+						</thead>
+						<tbody>
+						
+						<tr id="mantisGroupList_1_mantis_123" class="mantis" data-mantis-group-id="1" data-mantis-id="123">
+							<td class="id">123</td>
+							<td class="name"></td>
+							<td class="status"></td>
+							<td class="userReporter"></td>
+							<td class="userResponsable"></td>
+						</tr>
+						
+						<tr id="mantisGroupList_1_mantis_4566" class="mantis" data-mantis-group-id="1" data-mantis-id="4566">
+							<td class="id">4566</td>
+							<td class="name"></td>
+							<td class="status"></td>
+							<td class="userReporter"></td>
+							<td class="userResponsable"></td>
+						</tr>
+						
+						</tbody>
+					</table>
+					</div>
+				</div>
+				</div>
+			</div>
+		
+		</div>
+		</div>
+		
+		</div>
+		
+		<!-- MANTIS GROUP LIST (END) -->
+
+		<script id="mantisGroupTmpl" type="text/x-jquery-tmpl">
+<div class="mantisGroup row" id="mantisGroup_${mantisGroup.id}" data-mantis-group-id="${mantisGroup.id}">
+	<div class="col-md-12">
+	<div class="row">
+		<div class="col-md-11">${mantisGroup.name}</div>
+		<div class="col-md-1"><a href="${context}/${mantisGroup.id}" class="delete">-</a></div>
+	</div>
+	<div class="row">
+		<ul id="mantisGroupList_${mantisGroup.id}_mantis_ids" class="mantisTags col-md-12"></ul>
+	</div>
+	<div class="row">
+		<table id="mantisGroupList_${mantisGroup.id}_mantisList" class="mantisList col-md-12">
+			<tr>
+				<th>ID</th>
+				<th>Name</th>
+				<th>Status</th>
+				<th>Reporter</th>
+				<th>Responsable</th>
+			</tr>
+		</table>
+	</div>
+	</div>
+</div>
+</script>
+
+<script id="mantisTmpl" type="text/x-jquery-tmpl">
+<tr id="mantisGroupList_${mantisGroup.id}_mantis_${mantis.id}" class="mantis" data-mantis-group-id="${mantisGroup.id}" data-mantis-id="${mantis.id}">
+	<td class="id">${mantis.id}</td>
+	<td class="name">${mantis.name}</td>
+	<td class="status">${mantis.status}</td>
+	<td class="userReporter">${mantis.userReporter}</td>
+	<td class="userResponsable">${mantis.userResponsable}</td>
+</tr>
+</script>
+
+
+	
+	<script src="./mantismonitor_files/jquery-1.11.0.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="./mantismonitor_files/jquery-ui.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="./mantismonitor_files/bootstrap.min.js" charset="utf-8"></script>
+	<script src="./mantismonitor_files/jquery.tmpl.min.js"></script>
+	<script src="./mantismonitor_files/tag-it.js" type="text/javascript" charset="utf-8"></script>
+	<script src="./mantismonitor_files/mantismonitor.js" type="text/javascript" charset="utf-8"></script>
+	<script>
+		$(function() {
+			$("#btAddMantisGroup").click(function() {
+				var mantisGroup = $("#frmMantisGroup").serialize();
+			
+				$.post("/mantismonitor/add", mantisGroup, function(response) {
+					if (typeof(response.mantisGroup) !== "undefined") {
+						msg.success("Group added with success", 15);
+						$.tmpl("mantisGroupTmpl", response).appendTo("#mantisGroupList");
+
+						refreshEvents();
+						$("#mantisGroup_name").val("");
+					}
+				});
+
+				return false;
+			});
+
+			function configDelete() {
+				$(".delete").click(function() {
+					var $this = $(this); 
+					
+					$.delete_($this.attr("href"), function(response) {
+						if (typeof(response.success) !== "undefined") {
+							$this.parents(".mantisGroup").get(0).remove();
+						}
+					});
+					return false;
+				});
+			}
+
+			function refreshEvents() {
+				$(".mantisTags").tagit({
+					beforeTagAdded: function(event, ui) {
+				        return $.isNumeric(ui.tagLabel);
+				    },
+					afterTagAdded: function(event, ui) {
+						if (ui.duringInitialization) {
+							return;
+						}
+						
+						console.log(ui);
+						var $this = $(this);
+						
+						var mantisGroupId = $this.parents(".mantisGroup").attr("data-mantis-group-id");
+						var mantisId = ui.tagLabel;
+						
+						$.post("/mantismonitor/"+ mantisGroupId +"/add/"+mantisId, function(response) {
+							if (typeof(response.success) !== "undefined") {
+								msg.success("Mantis added with success", 15);
+								$.tmpl("mantisTmpl", response).appendTo("#mantisGroupList_"+ mantisGroupId +"_mantisList");
+							}
+						});
+					},
+					beforeTagRemoved: function(event, ui) {
+						console.log(ui);
+						var $this = $(this);
+						
+						var mantisGroupId = $this.parents(".mantisGroup").attr("data-mantis-group-id");
+						var mantisId = ui.tagLabel; 
+
+						$("#mantisGroupList_"+mantisGroupId+"_mantis_"+mantisId).remove();
+						
+						$.delete_("/mantismonitor/"+ mantisGroupId +"/remove/"+mantisId, function(response) {
+							if (typeof(response.success) !== "undefined") {
+								msg.success("Mantis removed with success", 15);
+							} else {
+								msg.error("Mantis not removed", 15);
+							} 
+						});
+						
+						return true;
+					}
+				});
+				configDelete();
+			}
+
+			function refreshMantisGroup(mantisGroupId) {
+				var el = $("#mantisGroupList_"+mantisGroupId);
+
+				$.get("/mantismonitor/"+ mantisGroupId + "/refresh", function(response) {
+					if (response.mantisGroup && response.mantisGroup.mantisList) {
+						var mantisGroup = response.mantisGroup;
+						
+						for (var i = 0; i < mantisGroup.mantisList.length; i++) {
+							var mantis = response.mantisGroup.mantisList[i];
+
+							$("tr[data-mantis-id="+ mantis.id +"] .id").text(mantis.id);
+							$("tr[data-mantis-id="+ mantis.id +"] .name").text(mantis.name);
+							$("tr[data-mantis-id="+ mantis.id +"] .status").text(mantis.status);
+							$("tr[data-mantis-id="+ mantis.id +"] .userReporter").text(mantis.userReporter);
+							$("tr[data-mantis-id="+ mantis.id +"] .userResponsable").text(mantis.userResponsable);
+						}
+					} 
+				});
+			}
+
+			refreshEvents();
+
+			function refreshAll() {
+				$(".mantisGroup").each(function(index, el) {
+					refreshMantisGroup($(this).attr("data-mantis-group-id"));
+				});
+			}
+
+			$("#btnRefreshAll").click(function() {
+				refreshAll();
+			});
+			
+			$.template("mantisGroupTmpl", $("#mantisGroupTmpl"));
+			$.template("mantisTmpl", $("#mantisTmpl"));
+
+			var refreshTimer = setInterval(function() {
+				refreshAll();
+			}, 1*60*1000);
+			
+		});
+	</script>
+<ul class="ui-autocomplete ui-menu ui-widget ui-widget-content ui-corner-all tagit-autocomplete" role="listbox" aria-activedescendant="ui-active-menuitem" style="z-index: 1; top: 0px; left: 0px; display: none;"></ul></body></html>

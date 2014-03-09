@@ -4,24 +4,41 @@
  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd">
  <display-name>mantismonitor</display-name>
  
-<listener>
-      <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
-  </listener>
+	<listener>
+	    <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+	</listener>
  
- <filter>
-  <filter-name>vraptor</filter-name>
-  <filter-class>br.com.caelum.vraptor.VRaptor</filter-class>
- </filter>
- <filter-mapping>
-  <filter-name>vraptor</filter-name>
-  <url-pattern>/</url-pattern>
- </filter-mapping>
+ 	<filter>
+	    <filter-name>entityManagerInViewFilter</filter-name>
+	    <filter-class>org.springframework.orm.jpa.support.OpenEntityManagerInViewFilter</filter-class>
+	    <init-param>
+	        <param-name>entityManagerFactoryBeanName</param-name>
+	        <param-value>entityManagerFactory</param-value>
+	    </init-param>
+	</filter>
+	
+	<filter-mapping>
+	    <filter-name>entityManagerInViewFilter</filter-name>
+	    <url-pattern>/*</url-pattern>
+	    <dispatcher>REQUEST</dispatcher>
+	</filter-mapping>
  
- <context-param>
-     <param-name>br.com.caelum.vraptor.packages</param-name>
-     <param-value>br.com.caelum.vraptor.util.jpa</param-value>
- </context-param>
- 
+	<filter>
+	  <filter-name>vraptor</filter-name>
+	  <filter-class>br.com.caelum.vraptor.VRaptor</filter-class>
+	</filter>
+	<filter-mapping>
+	  <filter-name>vraptor</filter-name>
+	  <url-pattern>/*</url-pattern>
+	  <dispatcher>FORWARD</dispatcher>
+	  <dispatcher>REQUEST</dispatcher>
+	</filter-mapping>
+	
+	<context-param>
+	    <param-name>br.com.caelum.vraptor.packages</param-name>
+	    <param-value> br.com.caelum.vraptor.serialization.gson</param-value>
+	</context-param>
+	
  <welcome-file-list>
   <welcome-file>index.html</welcome-file>
   <welcome-file>index.htm</welcome-file>
