@@ -1,4 +1,4 @@
-package com.mantismonitor.util;
+package com.mantismonitor.message;
 
 public class WarningMessage extends Message {
 	

@@ -1,4 +1,4 @@
-package com.mantismonitor.util;
+package com.mantismonitor.message;
 
 import br.com.caelum.vraptor.InterceptionException;
 import br.com.caelum.vraptor.Intercepts;
