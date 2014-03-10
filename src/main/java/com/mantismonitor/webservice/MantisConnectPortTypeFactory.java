@@ -1,7 +1,6 @@
 package com.mantismonitor.webservice;
 
 import java.net.URL;
-import java.util.Properties;
 
 import biz.futureware.mantisconnect.MantisConnect;
 import biz.futureware.mantisconnect.MantisConnectLocator;
@@ -10,21 +9,25 @@ import br.com.caelum.vraptor.ioc.ApplicationScoped;
 import br.com.caelum.vraptor.ioc.Component;
 import br.com.caelum.vraptor.ioc.ComponentFactory;
 
+import com.mantismonitor.configuration.MantisMonitorConfiguration;
+
 @Component
 @ApplicationScoped
 public class MantisConnectPortTypeFactory implements ComponentFactory<MantisConnectPortType>{
 	
 	private MantisConnectPortType mantisConnect;
+	private MantisMonitorConfiguration configuration;
+	
+	public MantisConnectPortTypeFactory(MantisMonitorConfiguration configuration) {
+		this.configuration = configuration;
+	}
 
 	@Override
 	public MantisConnectPortType getInstance() {
 		if (mantisConnect == null) {
 			try {
-				Properties configProperties = new Properties();
-				configProperties.load(Thread.currentThread().getContextClassLoader().getResourceAsStream("config.properties"));
-				
 				MantisConnect locator = new MantisConnectLocator();
-				mantisConnect = locator.getMantisConnectPort(new URL(configProperties.getProperty("mantisconnect.endpoint")));
+				mantisConnect = locator.getMantisConnectPort(new URL(configuration.getWebserviceEndpoint()));
 			} catch(Exception ex) {
 				ex.printStackTrace();
 				throw new RuntimeException(ex);

@@ -1,6 +1,5 @@
 package com.mantismonitor.service;
 
-import java.rmi.RemoteException;
 import java.util.Date;
 import java.util.UUID;
 

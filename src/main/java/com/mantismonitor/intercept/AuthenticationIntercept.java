@@ -1,4 +1,4 @@
-package com.mantismonitor.util;
+package com.mantismonitor.intercept;
 
 import br.com.caelum.vraptor.InterceptionException;
 import br.com.caelum.vraptor.Intercepts;
@@ -9,15 +9,16 @@ import br.com.caelum.vraptor.ioc.RequestScoped;
 import br.com.caelum.vraptor.resource.ResourceMethod;
 
 import com.mantismonitor.controller.HomeController;
+import com.mantismonitor.util.UserSession;
 
 @Intercepts
 @RequestScoped
-public class MantisMonitorIntercept implements Interceptor {
+public class AuthenticationIntercept implements Interceptor {
 
 	private UserSession userSesison;
 	private Result result;
 	
-	public MantisMonitorIntercept(UserSession userSession, Result result) {
+	public AuthenticationIntercept(UserSession userSession, Result result) {
 		this.userSesison = userSession;
 		this.result = result;
 	}
