@@ -1,10 +1,3 @@
-
-
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-
-<c:set var="context" value="${pageContext.request.contextPath}" />
-
 <!DOCTYPE html>
 <html lang="pt">
 	<head>
@@ -19,8 +12,8 @@
 	<body>
 		<div class="container-fluid">
 		
-		<div id="msgError">${error}</div>
-		<div id="msgSuccess">${success}</div>
+		<div id="msgError" class="alert alert-danger alert-dismissable">${error}</div>
+		<div id="msgSuccess" class="alert alert-success alert-dismissable">${success}</div>
 		
 		${session.userSession.user.login}
 	

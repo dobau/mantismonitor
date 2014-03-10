@@ -31,7 +31,7 @@ public class MantisService {
 		Mantis mantis = mantisRepository.findOne(id);
 		
 		// 1 minute
-		if ((System.currentTimeMillis() - mantis.getLastRefresh().getTime()) > 1*60*1000) {
+		if (mantis.getLastRefresh() == null || (System.currentTimeMillis() - mantis.getLastRefresh().getTime()) > 1*60*1000) {
 			
 			/*
 		try {
