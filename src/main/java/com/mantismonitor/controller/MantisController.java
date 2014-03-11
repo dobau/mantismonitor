@@ -1,12 +1,12 @@
 package com.mantismonitor.controller;
 
-import static br.com.caelum.vraptor.view.Results.*;
 import br.com.caelum.vraptor.Path;
 import br.com.caelum.vraptor.Resource;
 import br.com.caelum.vraptor.Result;
 
 import com.mantismonitor.entity.Mantis;
 import com.mantismonitor.entity.User;
+import com.mantismonitor.intercept.Json;
 import com.mantismonitor.service.MantisService;
 import com.mantismonitor.util.UserSession;
 
@@ -24,11 +24,12 @@ public class MantisController {
 		this.user = userSession.getUser();
 	}
 	
+	@Json
 	@Path("/refresh/{mantisId}")
 	public void refresh(Long mantisId) {
 		Mantis mantis = mantisService.refreshAndGetMantis(user, mantisId);
 		
-		result.use(json()).from(mantis).serialize();
+		result.include("mantis", mantis);
 	}
 
 }

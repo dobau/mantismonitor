@@ -14,6 +14,7 @@ import com.mantismonitor.entity.Mantis;
 import com.mantismonitor.entity.MantisGroup;
 import com.mantismonitor.entity.User;
 import com.mantismonitor.exception.MantisGroupDontFoundException;
+import com.mantismonitor.intercept.Json;
 import com.mantismonitor.service.MantisGroupService;
 import com.mantismonitor.util.UserSession;
 
@@ -36,7 +37,8 @@ public class MantisGroupController {
 		
 		result.include("mantisGroupList", mantisGroupList);
 	}
-
+	
+	@Json
 	@Post("/add")
 	public void add(MantisGroup mantisGroup) {
 		mantisGroup.setUser(user);
@@ -44,30 +46,27 @@ public class MantisGroupController {
 		
 		result.include("success", "Group saved with success");
 		result.include("mantisGroup", mantisGroup);
-		
-		result.use(json()).withoutRoot().from(result.included()).serialize();
 	}
 
+	@Json
 	@Delete("/{groupId}")
 	public void remove(Long groupId) throws MantisGroupDontFoundException {
 		mantisGroupService.verify(user, groupId);
 		mantisGroupService.remove(groupId);
 
 		result.include("success", "Group removed with success");
-		
-		result.use(json()).withoutRoot().from(result.included()).serialize();
 	}
 	
+	@Json
 	@Delete("/{groupId}/remove/{mantisId}")
 	public void remove(Long groupId, Long mantisId) throws MantisGroupDontFoundException {
 		mantisGroupService.verify(user, groupId);
 		mantisGroupService.removeMantis(groupId, mantisId);
 		
 		result.include("success", "Mantis removed from group with success");
-		
-		result.use(json()).withoutRoot().from(result.included()).serialize();
 	}
 
+	@Json
 	@Post("/{groupId}/add/{mantisId}")
 	public void add(Long groupId, Long mantisId) {
 		MantisGroup mantisGroup = mantisGroupService.get(groupId);
@@ -76,8 +75,6 @@ public class MantisGroupController {
 		result.include("mantis", mantis);
 		result.include("mantisGroup", mantisGroup);
 		result.include("success", "Mantis added with success");
-		
-		result.use(json()).withoutRoot().from(result.included()).serialize();
 	}
 
 	@Path("/{groupId}/refresh")
