@@ -24,15 +24,14 @@ public class MantisConnectPortTypeFactory implements ComponentFactory<MantisConn
 
 	@Override
 	public MantisConnectPortType getInstance() {
-		if (mantisConnect == null) {
-			try {
-				MantisConnect locator = new MantisConnectLocator();
-				mantisConnect = locator.getMantisConnectPort(new URL(configuration.getWebserviceEndpoint()));
-			} catch(Exception ex) {
-				ex.printStackTrace();
-				throw new RuntimeException(ex);
-			}
-		}
+//		if (mantisConnect == null) {
+//			try {
+//				MantisConnect locator = new MantisConnectLocator();
+//				mantisConnect = locator.getMantisConnectPort(new URL(configuration.getWebserviceEndpoint()));
+//			} catch(Exception ex) {
+//				throw new RuntimeException(ex);
+//			}
+//		}
 		
 		return mantisConnect;
 	}

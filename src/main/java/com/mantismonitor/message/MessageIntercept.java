@@ -19,7 +19,7 @@ public class MessageIntercept implements Interceptor {
 	@Override
 	public void intercept(InterceptorStack stack, ResourceMethod method, Object resourceInstance) throws InterceptionException {
 		stack.next(method, resourceInstance);
-		result.include("error", "User not logged");
+		//result.include("error", "User not logged");
 	}
 
 	@Override

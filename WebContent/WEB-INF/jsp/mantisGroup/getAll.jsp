@@ -147,7 +147,6 @@
 							return;
 						}
 						
-						console.log(ui);
 						var $this = $(this);
 						
 						var mantisGroupId = $this.parents(".mantisGroup").attr("data-mantis-group-id");
@@ -161,7 +160,6 @@
 						});
 					},
 					beforeTagRemoved: function(event, ui) {
-						console.log(ui);
 						var $this = $(this);
 						
 						var mantisGroupId = $this.parents(".mantisGroup").attr("data-mantis-group-id");

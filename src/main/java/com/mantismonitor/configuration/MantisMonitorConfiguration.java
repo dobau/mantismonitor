@@ -7,8 +7,8 @@ import br.com.caelum.vraptor.ioc.Component;
 @ApplicationScoped
 public class MantisMonitorConfiguration {
 
-	public static final String WEBSERVICE_ENDPOINT_NAME = "mantisMonitor.webservice_endpoint";
-	public static final String CACHE_TIME_NAME = "mantisMonitor.cache_time";
+	public static final String WEBSERVICE_ENDPOINT_NAME = "mantismonitor.webservice_endpoint";
+	public static final String CACHE_TIME_NAME = "mantismonitor.cache_time";
 
 	public static final Integer CACHE_TIME_DEFAULT = 5; // 5 minutes
 

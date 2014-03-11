@@ -3,8 +3,6 @@ package com.mantismonitor.configuration;
 import java.io.IOException;
 import java.util.Properties;
 
-import org.springframework.util.NumberUtils;
-
 import br.com.caelum.vraptor.ioc.ApplicationScoped;
 import br.com.caelum.vraptor.ioc.Component;
 import br.com.caelum.vraptor.ioc.ComponentFactory;
@@ -27,7 +25,7 @@ public class MantisMonitorConfigurationFactory implements ComponentFactory<Manti
 			
 			mantisMonitorConfiguration = new MantisMonitorConfiguration();
 			mantisMonitorConfiguration.setWebserviceEndpoint(configProperties.getProperty(MantisMonitorConfiguration.WEBSERVICE_ENDPOINT_NAME));
-			mantisMonitorConfiguration.setCacheTime(NumberUtils.parseNumber(configProperties.getProperty(MantisMonitorConfiguration.CACHE_TIME_NAME), Integer.class));
+			mantisMonitorConfiguration.setCacheTime(new Integer(configProperties.getProperty(MantisMonitorConfiguration.CACHE_TIME_NAME)));
 		}
 		
 		return mantisMonitorConfiguration;
